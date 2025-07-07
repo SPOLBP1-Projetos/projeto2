@@ -1,0 +1,58 @@
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Cabeçalho */
+  header {
+    background-color: #ffffff;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+  
+  /* Navegação */
+  nav {
+    margin-top: 15px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #007bff;
+    margin: 0 10px;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  nav a:hover {
+    background-color: #e9ecef;
+    border-color: #007bff;
+  }
+  
+  /* Conteúdo principal */
+  main {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  main h2 {
+    color: #444;
+  }
+  
+  main p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  

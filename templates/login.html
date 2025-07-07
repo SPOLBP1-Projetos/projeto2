@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        {% if session["username"] %}
+        <p>Logado como: <strong> {{ session['username'] }} </strong></p>
+        <a href="/logout">Sair</a>
+        {% else %}
+        <p>Você não está logado.</p>
+        <form action="/login" method="post" class="form">
+            <label name="login">Nome</label> <br>
+            <input type="text" name="username" placeholder="Seu Nome"> <br>
+
+            <label name="senha">Senha</label> <br>
+            <input type="password" name="password" placeholder="Sua Senha"> <br><br>
+
+            <input type="submit" value="Fazer Login">
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>

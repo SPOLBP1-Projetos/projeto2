@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lazer</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Cabeçalho */
+  header {
+    background-color: #ffffff;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+  
+  /* Navegação */
+  nav {
+    margin-top: 15px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #007bff;
+    margin: 0 10px;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  nav a:hover {
+    background-color: #e9ecef;
+    border-color: #007bff;
+  }
+  
+  /* Conteúdo principal */
+  main {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  main h2 {
+    color: #444;
+  }
+  
+  main p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .user {
+            position: absolute;
+            height: fit-content;
+            margin-left: 84vw;
+            padding: 10px;
+            margin-top: -4.5vh;
+          }
+          .sair {
+            position: absolute;
+            height: fit-content;
+            margin-left: 90vw;
+            padding: 10px;
+            margin-top: -4.5vh;
+          }
+          .sair a {
+            font-size: 23px;
+            text-decoration: none;
+            color: rgb(255, 0, 0);
+          }
+          .sair :hover{
+            font-size: 23px;
+            text-decoration: none;
+            color: black;
+          }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lazer</h1>
+    <div class="user"><h2>{{ session['username'] }}</h2></div>
+    <div class="sair"><h2><a href="/logout">Sair</a></h2></div>
+    <nav>
+      <a href="home">Home</a>
+      <a href="entretenimento">Entretenimento</a>
+      <a href="esportes">Esportes</a>
+      <a href="lazer">Lazer</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Dicas de Lazer</h2>
+    <p>Explore ideias para aproveitar seu tempo livre com qualidade!</p>
+  </main>
+</body>
+</html>
