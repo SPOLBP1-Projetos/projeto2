@@ -65,7 +65,7 @@
           .user {
             position: absolute;
             height: fit-content;
-            margin-left: 84vw;
+            margin-left: 80vw;
             padding: 10px;
             margin-top: -4.5vh;
           }
@@ -86,10 +86,50 @@
             text-decoration: none;
             color: black;
           }
+          .tema {
+            margin-left: -40vw;
+            position: absolute;
+            background-color: transparent;
+            border: 1px solid;
+            padding: 12px 12px;
+            font-size: 16px;
+            border-radius: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.4s ease;
+          }
           </style>
+          {% if tema == 'escuro' %}
+        <style>
+          body {
+              background-color: #121212;
+             color: #f1f1f1;
+            }
+            header {
+              background-color: #1e1e1e;
+              color: white;
+            }
+            nav a {
+              color: #90caf9;
+            }
+            nav a:hover {
+              background-color: #333;
+              border-color: #90caf9;
+            }
+        </style>
+          {% endif %}
 </head>
 <body>
     <header>
+      <form method="POST" action="/alternar-tema">
+      <button type="submit" class="tema">
+        {% if tema == "escuro" %}
+            ☀️
+        {% else %}
+            🌙
+        {% endif %}
+      </button>
+    </form>
         <h1>Portal de Notícias</h1>
         <div class="user"><h2>{{ session['username'] }}</h2></div>
         <div class="sair"><h2><a href="/logout">Sair</a></h2></div>
@@ -103,7 +143,7 @@
       <main>
         {% if session["username"] %}
     <h1>Bem vindo, <strong> {{ session['username'] }}</strong>!</h1>
-    <a href="/logout">Sair</a>
+    <h2>👁️ Número de visitas à página nesta sessão: <strong>{{ views }}</strong></h2>
     {% endif %}
         <p>Selecione uma categoria para explorar as últimas novidades.</p>
       </main>

@@ -1,5 +1,5 @@
-from flask import Flask, redirect, url_for, render_template, request, session
-from datetime import timedelta
+from flask import Flask, redirect, url_for, render_template, request, session, make_response
+from datetime import datetime, timedelta
 app = Flask(__name__)
 
 app.secret_key = '1234'
@@ -31,32 +31,56 @@ def carregarform():
 
 @app.route("/home", methods=["GET", "POST"])
 def carregarhome():
+    tema = request.cookies.get("tema", "claro")
     if "username" in session:
-        return render_template("home.html")
+        if "views" in session:
+            session["views"] += 1
+        else:
+            session["views"] = 1
+        return render_template("home.html", views=session["views"], tema=tema)
     else:
-        # Se o usuário não estiver logado, redireciona para a página de login.
-        return redirect(url_for("carregarform"))
+        return redirect(url_for("carregarform"), tema=tema)
 
 @app.route("/logout")
 def logout():
-    session.pop("username", None) # Remove o 'username' da sessão
+    session.pop("username", None)
+    session.pop("views", None)
     return redirect(url_for("carregarform"))
 
 @app.route("/esportes")
 def esportes():
-   return render_template("esportes.html")
+   tema = request.cookies.get("tema", "claro")
+   return render_template("esportes.html", tema=tema)
 
 @app.route("/entretenimento")
 def entretenimento():
-   return render_template("entretenimento.html")
+   tema = request.cookies.get("tema", "claro")
+   return render_template("entretenimento.html", tema=tema)
 
 @app.route("/lazer")
 def lazer():
-   return render_template("lazer.html")
+   tema = request.cookies.get("tema", "claro")
+   return render_template("lazer.html", tema=tema)
 
 @app.route("/")
 def index():
    return redirect(url_for("carregarform"))
+
+@app.route("/alternar-tema", methods=["POST"])
+def alternar_tema():
+    tema_atual = request.cookies.get("tema", "claro")
+    novo_tema = "escuro" if tema_atual == "claro" else "claro"
+
+    resp = make_response(redirect(url_for("carregarhome")))
+
+    # Opção com max_age (mais simples):
+    resp.set_cookie("tema", novo_tema, expires=datetime.utcnow() + timedelta(minutes=30))
+
+    # ou, se quiser usar expires:
+    # from datetime import datetime, timedelta
+    # resp.set_cookie("tema", novo_tema, expires=datetime.utcnow() + timedelta(minutes=30))
+
+    return resp
 
 if __name__ == "__main__":
     app.run(debug=True)
