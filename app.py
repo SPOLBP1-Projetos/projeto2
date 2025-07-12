@@ -37,9 +37,11 @@ def carregarhome():
             session["views"] += 1
         else:
             session["views"] = 1
-        return render_template("home.html", views=session["views"], tema=tema)
+        resp = make_response(render_template("home.html", views=session["views"], tema=tema))
+        resp.set_cookie("ultima_categoria", "home", max_age=1800)
+        return resp
     else:
-        return redirect(url_for("carregarform"), tema=tema)
+        return redirect(url_for("carregarform"))
 
 @app.route("/logout")
 def logout():
@@ -50,21 +52,37 @@ def logout():
 @app.route("/esportes")
 def esportes():
    tema = request.cookies.get("tema", "claro")
-   return render_template("esportes.html", tema=tema)
+   resp = make_response(render_template("esportes.html", tema=tema))
+   resp.set_cookie("ultima_categoria", "esportes", max_age=1800)
+   return resp
 
 @app.route("/entretenimento")
 def entretenimento():
    tema = request.cookies.get("tema", "claro")
-   return render_template("entretenimento.html", tema=tema)
+   resp = make_response(render_template("entretenimento.html", tema=tema))
+   resp.set_cookie("ultima_categoria", "entretenimento", max_age=1800)
+   return resp
 
 @app.route("/lazer")
 def lazer():
    tema = request.cookies.get("tema", "claro")
-   return render_template("lazer.html", tema=tema)
+   resp = make_response(render_template("lazer.html", tema=tema))
+   resp.set_cookie("ultima_categoria", "lazer", max_age=1800)
+   return resp
 
 @app.route("/")
 def index():
-   return redirect(url_for("carregarform"))
+    if "username" in session:
+        ultima_categoria = request.cookies.get("ultima_categoria", "home")
+        if ultima_categoria == "home":
+            return redirect(url_for("carregarhome"))
+        elif ultima_categoria in ["esportes", "entretenimento", "lazer"]:
+            return redirect(url_for(ultima_categoria))
+        else:
+            return redirect(url_for("carregarhome"))
+    else:
+        return redirect(url_for("carregarform"))
+
 
 @app.route("/alternar-tema", methods=["POST"])
 def alternar_tema():
@@ -73,12 +91,7 @@ def alternar_tema():
 
     resp = make_response(redirect(url_for("carregarhome")))
 
-    # Opção com max_age (mais simples):
     resp.set_cookie("tema", novo_tema, expires=datetime.utcnow() + timedelta(minutes=30))
-
-    # ou, se quiser usar expires:
-    # from datetime import datetime, timedelta
-    # resp.set_cookie("tema", novo_tema, expires=datetime.utcnow() + timedelta(minutes=30))
 
     return resp
 
