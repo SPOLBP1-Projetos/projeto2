@@ -8,6 +8,7 @@ app.permanent_session_lifetime = timedelta(minutes=30)
 
 @app.route("/login", methods=["GET", "POST"])
 def carregarform():
+    tema = request.cookies.get("tema", "claro")
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -22,10 +23,10 @@ def carregarform():
         else:
             # Se as credenciais estiverem incorretas, renderiza a página de login
             # novamente com uma mensagem de erro.
-            return render_template("login.html", error="Usuário ou senha inválidos.")
+            return render_template("login.html", error="Usuário ou senha inválidos.", tema=tema)
     else:
         # Se o método for GET, simplesmente renderiza a página de login.
-        return render_template("login.html")
+        return render_template("login.html", tema=tema)
 
    
 
