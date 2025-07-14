@@ -14,7 +14,7 @@ def carregarform():
         password = request.form["password"]
 
         # Verifica as credenciais
-        if username == "Camilo" and password == "1234":
+        if username == "admin" and password == "1234":
             # Se as credenciais estiverem corretas, define a sessão como permanente
             # e armazena o nome de usuário na sessão.
             session.permanent = True

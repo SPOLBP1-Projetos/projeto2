@@ -100,6 +100,39 @@ body {
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.4s ease;
           }
+      .card {
+      background-color: white;
+      border-radius: 12px;
+      border-top: 5px solid #27ae60;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 16px;
+    }
+    .card-content h2 {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .card-content p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 12px;
+    }
+    .card-content a {
+      text-decoration: none;
+      color: #27ae60;
+      font-weight: bold;
+    }
   </style>
   {% if tema == 'escuro' %}
         <style>
@@ -146,5 +179,31 @@ body {
     <h2>Notícias Esportivas</h2>
     <p>Fique por dentro de tudo que acontece no mundo do esporte!</p>
   </main>
+    <div class="card">
+    <img src="https://i0.wp.com/imprensa24h.com.br/wp-content/uploads/2025/07/image.webp?resize=930%2C620&ssl=1" >
+    <div class="card-content">
+      <h2>Clássico termina em empate</h2>
+      <p>Jogo entre rivais foi marcado por emoção e golaços nos minutos finais.</p>
+      <a href="#">Leia mais</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://s2-ge.glbimg.com/42IhJ0llHnGjXJTMRCc4zUnMW8g=/0x0:4160x2788/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2024/L/9/LbtSX7Q5uA1CWzeBM0BQ/whatsapp-image-2024-08-01-at-15.40.54.jpeg" >
+    <div class="card-content">
+      <h2>Brasil conquista ouro nas Olimpíadas</h2>
+      <p>Atleta supera recorde mundial em prova histórica de natação.</p>
+      <a href="#">Leia mais</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/08/image-1-e1693402099319.jpg?w=1200&h=675&crop=1" >
+    <div class="card-content">
+      <h2>Time surpreende no basquete</h2>
+      <p>Equipe brasileira avança para as semifinais com atuação impecável.</p>
+      <a href="#">Leia mais</a>
+    </div>
+  </div>
 </body>
 </html>

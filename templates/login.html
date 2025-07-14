@@ -1,141 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        .login  {
-            width: 30vw;
-            height: 80vh;
-            border: 2px solid black;
-            border-radius: 15%;
-            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            background-color: azure;
-        }
-        .login form {
-            width: 20vw;
-            height: 50vh;
-            border: 1px solid gray;
-            border-radius: 10%;
-            background-color: aliceblue;
-        }
-        .login h1 {
-            margin-bottom: 12vh;
-            
-        }
-        .login input {
-            margin-bottom: 6vh;
-        }
-        .botao {
-            background: linear-gradient(135deg, #4e54c8, #8f94fb);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.4s ease;
-        }
-        .botao:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-            background: linear-gradient(135deg, #3b41b5, #7c82e8);
-        }
-        .logado {
-            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
-        .tema {
-            margin-left: 80vw;
-            position: absolute;
-            background-color: transparent;
-            border: 1px solid;
-            padding: 12px 12px;
-            font-size: 16px;
-            border-radius: 100%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.4s ease;
-          }
-    </style>
-    {% if tema == 'escuro' %}
-        <style>
-          body {
-              background-color: #121212;
-             color: #f1f1f1;
-            }
-            header {
-              background-color: #1e1e1e;
-              color: white;
-            }
-            nav a {
-              color: #90caf9;
-            }
-            nav a:hover {
-              background-color: #333;
-              border-color: #90caf9;
-            }
-            .login  {
-            width: 30vw;
-            height: 80vh;
-            border: 2px solid white;
-            border-radius: 15%;
-            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            background-color: darkslategrey;
-            }
-            .login  form {
-                width: 20vw;
-                height: 50vh;
-                border: 1px solid gray;
-                border-radius: 10%;
-                background-color: darkslateblue;
-            }
-            .login h1 {
-                margin-bottom: 12vh;
-                
-            }
-            .login input {
-                margin-bottom: 6vh;
-                background-color: black;
-                color: white;
-            }
-        </style>
-    {% endif %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Lucida Sans', sans-serif;
+      background-color: azure;
+      color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .tema {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: transparent;
+      border: 1px solid;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 100%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.4s ease;
+    }
+
+    .login {
+      width: 100%;
+      max-width: 400px;
+      padding: 40px;
+      background-color: white;
+      border: 2px solid black;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .login h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .mensagem {
+      font-size: 1rem;
+      margin-bottom: 30px;
+      color: #444;
+    }
+
+    .login form {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .login label {
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    .login input {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .botao {
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.4s ease;
+    }
+
+    .botao:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      background: linear-gradient(135deg, #3b41b5, #7c82e8);
+    }
+
+    .logado {
+      font-family: 'Lucida Sans', sans-serif;
+      text-align: center;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #4e54c8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  {% if tema == 'escuro' %}
+  <style>
+    body {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    .login {
+      background-color: #1e1e1e;
+      border: 2px solid white;
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.05);
+    }
+
+    .mensagem {
+      color: #ccc;
+    }
+
+    .login input {
+      background-color: #2a2a2a;
+      color: #fff;
+      border: 1px solid #555;
+    }
+
+    .botao {
+      background: linear-gradient(135deg, #7c82e8, #4e54c8);
+      color: white;
+    }
+
+    .botao:hover {
+      background: linear-gradient(135deg, #5b5fcf, #3a3fbe);
+    }
+
+    a {
+      color: #90caf9;
+    }
+
+    a:hover {
+      color: #add8ff;
+    }
+  </style>
+  {% endif %}
 </head>
 <body>
-    <header>
+  <header>
     <form method="POST" action="/alternar-tema">
-        <button type="submit" class="tema">
-            {% if tema == "escuro" %}
-                ☀️
-            {% else %}
-                🌙
-            {% endif %}
-        </button>
-    </form>
-    </header>
-    <div>
-        {% if session["username"] %}
-        <h1 class="logado">Logado como: <strong> {{ session['username'] }} </strong></h1>
-        <a href="/logout">Sair</a>
+      <button type="submit" class="tema">
+        {% if tema == "escuro" %}
+          ☀️
         {% else %}
-        <p>Você não está logado.</p>
-        <center><div class="login">
-            <h1>Login</h1>
-        <form action="/login" method="post" class="form">
-            <br>
-            <label name="login">Nome</label> <br>
-            <input type="text" name="username" placeholder="Seu Nome"> <br>
-
-            <label name="senha">Senha</label> <br>
-            <input type="password" name="password" placeholder="Sua Senha"> <br><br>
-
-            <input type="submit" value="Fazer Login" class="botao">
-        </form>
-        </div></center>
+          🌙
         {% endif %}
-    </div>
+      </button>
+    </form>
+  </header>
+
+  <div>
+    {% if session["username"] %}
+      <h1 class="logado">Logado como: <strong>{{ session['username'] }}</strong></h1>
+      <a href="/logout">Sair</a>
+    {% else %}
+      <div class="login">
+        <h1>Login</h1>
+        <p class="mensagem">Bem-vindo! Faça login para continuar.</p>
+        <form action="/login" method="post" class="form">
+          <label for="username">Nome</label>
+          <input type="text" name="username" placeholder="Seu Nome" required>
+
+          <label for="password">Senha</label>
+          <input type="password" name="password" placeholder="Sua Senha" required>
+
+          <input type="submit" value="Fazer Login" class="botao">
+        </form>
+      </div>
+    {% endif %}
+  </div>
 </body>
 </html>
